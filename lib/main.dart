@@ -14,6 +14,8 @@ class Portfolio extends StatelessWidget {
       [tab("Projects"), Container()],
     ];
 
+    getRepositories('jaq-the-cat');
+
     return MaterialApp(
       title: "Jaquie's Portfolio",
       theme: ThemeData(
@@ -26,7 +28,7 @@ class Portfolio extends StatelessWidget {
         length: tabs.length,
         child: Scaffold(
           appBar: AppBar(
-            title: Text("Jaquie's very cool portfolio"),
+            title: Text("Jaquie's portfolio"),
             bottom: TabBar(
               tabs: List<Widget>.from(tabs.map((t) => t.first)),
             ),
