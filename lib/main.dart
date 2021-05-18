@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'projects.dart';
 import 'util.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart' as dotenv;
 
 void main() {
   runApp(Portfolio());
 }
 
+final List<List<Widget>> tabs = [
+  [tab("About me"), Container()],
+  [tab("Projects"), Projects(getRepositories('jaq-the-cat'))],
+];
+
 class Portfolio extends StatelessWidget {
-
-  final List<List<Widget>> tabs = [
-    [tab("About me"), Container()],
-    [tab("Projects"), Projects(getRepositories('jaq-the-cat'))],
-  ];
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
