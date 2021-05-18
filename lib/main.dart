@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'projects.dart';
 import 'util.dart';
 
 void main() {
@@ -7,15 +8,13 @@ void main() {
 
 class Portfolio extends StatelessWidget {
 
+  final List<List<Widget>> tabs = [
+    [tab("About me"), Container()],
+    [tab("Projects"), Projects(getRepositories('jaq-the-cat'))],
+  ];
+
   @override
   Widget build(BuildContext context) {
-    final List<List<Widget>> tabs = [
-      [tab("About me"), Container()],
-      [tab("Projects"), Container()],
-    ];
-
-    getRepositories('jaq-the-cat');
-
     return MaterialApp(
       title: "Jaquie's Portfolio",
       theme: ThemeData(

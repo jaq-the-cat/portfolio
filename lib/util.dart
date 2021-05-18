@@ -13,9 +13,12 @@ void openURL(String url) async {
   await launch(url);
 }
 
-Future<List<String>> getRepositories(String username) async {
+Future<List<Map<String, dynamic>>> getRepositories(String username) async {
   http.Response r = await http.get(Uri.parse("https://api.github.com/users/$username/repos"));
   if (r.statusCode == 200)
-    return jsonDecode(r.body).map((e) => e['name']);
+    return List<Map<String, dynamic>>.from(jsonDecode(r.body).map((e) => {
+      'name': e['name'],
+      'description': e['description']
+    }));
   throw 'Failed to get repositories for $username';
 }
