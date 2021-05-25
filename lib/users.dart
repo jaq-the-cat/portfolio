@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 
-void signin() => UserAccountPage("Sign In", onValidate: (email, password) {
+Widget signin() => UserAccountPage("Sign In", onValidate: (email, password) {
 
 });
 
-void signup() => UserAccountPage("Sign Up", onValidate: (email, password) {
+Widget signup() => UserAccountPage("Sign Up", onValidate: (email, password) {
 
 });
 
@@ -13,7 +13,7 @@ class UserAccountPage extends StatefulWidget {
 
   final String whatdo;
   final void Function(String, String) onValidate;
-  UserAccountPage(this.whatdo, {required this.onValidate}) : super();
+  UserAccountPage(this.whatdo, {this.onValidate}) : super();
 
   @override
   _UserAccountPageState createState() => _UserAccountPageState();
@@ -43,13 +43,13 @@ class _UserAccountPageState extends State<UserAccountPage> {
               children: [
                 TextFormField(
                   controller: email,
-                  validator: (String? value) =>
+                  validator: (String value) =>
                     EmailValidator.validate(value) ? null : "Please enter a valid E-mail",
                 ),
                 TextFormField(
                   controller: password,
                   obscureText: !showpassword,
-                  validator: (String? value) =>
+                  validator: (String value) =>
                     (value != null && value.length > 7) ? null : "Password must have more than 7 characters",
                   decoration: InputDecoration(
                     suffixIcon: IconButton(
@@ -61,7 +61,7 @@ class _UserAccountPageState extends State<UserAccountPage> {
                 ElevatedButton(
                   child: Text(widget.whatdo),
                   onPressed: () {
-                    if (_formKey.currentState!.validate()) widget.onValidate(email.text, password.text);
+                    if (_formKey.currentState.validate()) widget.onValidate(email.text, password.text);
                   },
                 )
               ]

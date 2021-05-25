@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'projects.dart';
 import 'util.dart';
+import 'users.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart' as dotenv;
 
 void main() async {
@@ -37,11 +38,15 @@ class Portfolio extends StatelessWidget {
             actions: [
               TextButton(
                 child: Text('Sign in'),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Center()));
+                },
               ),
               TextButton(
                 child: Text('Sing up'),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => signup()));
+                },
               )
             ]
           ),

@@ -3,7 +3,7 @@ import 'util.dart';
 
 class RepoButton extends StatelessWidget {
 
-  RepoButton({this.url, this.title, this.desc, Key key}) : super(key: key);
+  RepoButton({this.url = "", this.title = "", this.desc = ""}) : super();
 
   final String url;
   final String title;
@@ -38,7 +38,7 @@ class RepoButton extends StatelessWidget {
 
 class Projects extends StatelessWidget {
 
-  Projects(this.repos, {Key key}) : super(key: key);
+  Projects(this.repos) : super();
 
   final Future<List<Map<String, dynamic>>> repos;
 
