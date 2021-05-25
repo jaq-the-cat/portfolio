@@ -8,12 +8,14 @@ void main() async {
   runApp(Portfolio());
 }
 
-final List<List<Widget>> tabs = [
-  [tab("About me"), Container()],
-  [tab("Projects"), Projects(getRepositories('jaq-the-cat'))],
-];
-
 class Portfolio extends StatelessWidget {
+
+  final List<List<Widget>> tabs = [
+    [tab("About me"), Container()],
+    [tab("Reviews"), Container()],
+    [tab("Projects"), Projects(getRepositories('jaq-the-cat'))],
+  ];
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -28,10 +30,20 @@ class Portfolio extends StatelessWidget {
         length: tabs.length,
         child: Scaffold(
           appBar: AppBar(
-            title: Text("Jaquie's portfolio"),
+            title: Text("Jaquie's Portfolio"),
             bottom: TabBar(
               tabs: List<Widget>.from(tabs.map((t) => t.first)),
             ),
+            actions: [
+              TextButton(
+                child: Text('Sign in'),
+                onPressed: () {},
+              ),
+              TextButton(
+                child: Text('Sing up'),
+                onPressed: () {},
+              )
+            ]
           ),
           body: TabBarView(
             children: List<Widget>.from(tabs.map((t) => t.last)),
