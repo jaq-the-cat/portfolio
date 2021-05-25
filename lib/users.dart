@@ -1,14 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 
-class SignIn extends StatefulWidget {
+void signin() => UserAccountPage("Sign In", onValidate: (email, password) {
+
+});
+
+void signup() => UserAccountPage("Sign Up", onValidate: (email, password) {
+
+});
+
+class UserAccountPage extends StatefulWidget {
+
+  final String whatdo;
+  final void Function(String, String) onValidate;
+  UserAccountPage(this.whatdo, {required this.onValidate}) : super();
+
   @override
-  _SignInState createState() => _SignInState();
+  _UserAccountPageState createState() => _UserAccountPageState();
 }
 
-class _SignInState extends State<SignIn> {
+class _UserAccountPageState extends State<UserAccountPage> {
 
   bool showpassword = false;
+
+  final TextEditingController email = new TextEditingController();
+  final TextEditingController password = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +32,7 @@ class _SignInState extends State<SignIn> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Sign In"),
+        title: Text(widget.whatdo),
       ),
       body: Center(
         child: Container(
@@ -26,26 +42,26 @@ class _SignInState extends State<SignIn> {
             child: Column(
               children: [
                 TextFormField(
+                  controller: email,
                   validator: (String? value) =>
                     EmailValidator.validate(value) ? null : "Please enter a valid E-mail",
                 ),
                 TextFormField(
+                  controller: password,
                   obscureText: !showpassword,
                   validator: (String? value) =>
                     (value != null && value.length > 7) ? null : "Password must have more than 7 characters",
                   decoration: InputDecoration(
                     suffixIcon: IconButton(
                       icon: Icon(showpassword ? Icons.remove_outlined : Icons.remove_red_eye_outlined),
-                      onPressed: () {},
+                      onPressed: () => showpassword ^= true,
                       )
                     )
                 ),
                 ElevatedButton(
-                  child: Text("Login"),
+                  child: Text(widget.whatdo),
                   onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                     // login and return to home page
-                    }
+                    if (_formKey.currentState!.validate()) widget.onValidate(email.text, password.text);
                   },
                 )
               ]
