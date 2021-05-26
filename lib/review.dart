@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 
-class Review extends StatelessWidget {
+class Review extends StatefulWidget {
 
+  @override
+  _ReviewState createState() => _ReviewState();
+}
+
+class _ReviewState extends State<Review> {
   final _formKey = GlobalKey<FormState>();
-
   final email = TextEditingController();
   final name = TextEditingController();
   final message = TextEditingController();
@@ -41,6 +45,12 @@ class Review extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Text(
+                    "Minimum length of 15 words",
+                    style: Theme.of(context).textTheme.caption,
+                    textAlign: TextAlign.left,
+                  ),
+                  SizedBox(height: 5),
                   TextFormField(
                     controller: message,
                     maxLines: null,
@@ -50,15 +60,9 @@ class Review extends StatelessWidget {
                       border:  OutlineInputBorder(),
                     ),
                     validator: (text) =>
-                      (text != null && text.split(" ").length < 15)
+                      (text != null && text.split(" ").length > 15)
                         ? null
                         : "Please enter a longer review message",
-                  ),
-                  SizedBox(height: 5),
-                  Text(
-                    "Minimum length of 15 words",
-                    style: Theme.of(context).textTheme.caption,
-                    textAlign: TextAlign.left,
                   ),
                 ],
               ),
