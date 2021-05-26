@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'projects.dart';
 import 'util.dart';
-import 'users.dart';
+import 'review.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart' as dotenv;
 
 void main() async {
@@ -39,17 +39,11 @@ class Portfolio extends StatelessWidget {
           ),
           actions: [
             TextButton(
-              child: Text('Sign in'),
+              child: Text('Post a review'),
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => signin()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Review()));
               },
             ),
-            TextButton(
-              child: Text('Sing up'),
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => signup()));
-              },
-            )
           ]
         ),
         body: TabBarView(
