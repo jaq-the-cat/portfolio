@@ -21,8 +21,6 @@ class UserAccountPage extends StatefulWidget {
 
 class _UserAccountPageState extends State<UserAccountPage> {
 
-  bool showpassword = false;
-
   final TextEditingController email = new TextEditingController();
   final TextEditingController password = new TextEditingController();
 
@@ -36,28 +34,28 @@ class _UserAccountPageState extends State<UserAccountPage> {
       ),
       body: Center(
         child: Container(
-          padding: EdgeInsets.all(15),
+          padding: EdgeInsets.symmetric(horizontal: 50),
           child:  Form(
             key: _formKey,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Text(
+                  widget.whatdo,
+                  style: Theme.of(context).textTheme.headline5,
+                ),
+                SizedBox(height: 10),
                 TextFormField(
                   controller: email,
+                  decoration: InputDecoration(
+                    labelText: "E-mail",
+                  ),
                   validator: (String value) =>
                     EmailValidator.validate(value) ? null : "Please enter a valid E-mail",
                 ),
-                TextFormField(
-                  controller: password,
-                  obscureText: !showpassword,
-                  validator: (String value) =>
-                    (value != null && value.length > 7) ? null : "Password must have more than 7 characters",
-                  decoration: InputDecoration(
-                    suffixIcon: IconButton(
-                      icon: Icon(showpassword ? Icons.remove_outlined : Icons.remove_red_eye_outlined),
-                      onPressed: () => showpassword ^= true,
-                      )
-                    )
-                ),
+                SizedBox(height: 10),
+                PasswordField(password),
+                SizedBox(height: 15),
                 ElevatedButton(
                   child: Text(widget.whatdo),
                   onPressed: () {
@@ -69,6 +67,38 @@ class _UserAccountPageState extends State<UserAccountPage> {
           )
         )
       ),
+    );
+  }
+}
+
+class PasswordField extends StatefulWidget {
+
+  final TextEditingController controller;
+
+  PasswordField(this.controller);
+
+  @override
+  PasswordFieldState createState() => PasswordFieldState();
+}
+
+class PasswordFieldState extends State<PasswordField> {
+
+  bool hidden = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: widget.controller,
+      obscureText: hidden,
+      validator: (String value) =>
+        (value != null && value.length > 7) ? null : "Password must have more than 7 characters",
+      decoration: InputDecoration(
+        labelText: "Password",
+        suffixIcon: IconButton(
+          icon: Icon(hidden ? Icons.visibility : Icons.visibility_off),
+          onPressed: () => setState(() => hidden ^= true),
+        )
+      )
     );
   }
 }

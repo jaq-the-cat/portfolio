@@ -41,12 +41,7 @@ class Portfolio extends StatelessWidget {
             TextButton(
               child: Text('Sign in'),
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Scaffold(
-                  appBar: AppBar(
-                    title: Text("Hello")
-                  ),
-                  body: Icon(Icons.title),
-                )));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => signin()));
               },
             ),
             TextButton(
