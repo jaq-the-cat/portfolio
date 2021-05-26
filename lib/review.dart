@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
+import 'util.dart';
 
 class Review extends StatefulWidget {
 
@@ -70,8 +71,8 @@ class _ReviewState extends State<Review> {
               ElevatedButton.icon(
                 icon: Icon(Icons.check),
                 label: Text("Add review"),
-                onPressed: () {
-                  if (_formKey.currentState.validate()) {
+                onPressed: () async {
+                  if (await doCaptcha() && _formKey.currentState.validate()) {
                     print("${email.text}\n${name.text}\n${message.text}");
                   }
               }),
