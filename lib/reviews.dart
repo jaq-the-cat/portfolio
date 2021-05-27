@@ -35,14 +35,13 @@ class ReviewsState extends State<Reviews> {
                 borderRadius:  BorderRadius.all(Radius.circular(5)),
               ),
               child: Padding(
-                padding: EdgeInsets.all(12),
+                padding: EdgeInsets.all(18),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     shouldDisplay ? Text(snapshot.data[i]['contact'], style: TextStyle(fontSize: 15, color: Colors.white38)) : Container(),
-                    shouldDisplay ? SizedBox(height: 2) : Container(),
                     Text(snapshot.data[i]['name'], style: TextStyle(fontSize: 24, color:  Colors.white)),
-                    SizedBox(height: 15),
+                    SizedBox(height: 20),
                     Text(snapshot.data[i]['message'], style: TextStyle(fontSize: 20, color: Colors.white), textAlign: TextAlign.justify),
                   ],
                 ),
