@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart' as dotenv;
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'projects.dart';
 import 'util.dart';
@@ -8,9 +9,16 @@ import 'review.dart';
 import 'reviews.dart';
 import 'database.dart';
 
-void main() async {
+Future<void> initializeServices() async {
   await dotenv.load();
-  Firebase.initializeApp();
+  await Firebase.initializeApp();
+  return FirebaseAuth.instance.signInWithEmailAndPassword(
+    email: dotenv.env['EMAIL'],
+    password: dotenv.env['PASSWORD'],
+  );
+}
+
+void main() async {
   runApp(MaterialApp(
     title: "Jaquie's Portfolio",
     theme: ThemeData(
@@ -19,7 +27,13 @@ void main() async {
       visualDensity:  VisualDensity.adaptivePlatformDensity,
       brightness: Brightness.dark,
     ),
-    home: Portfolio(),
+    home: FutureBuilder(
+      future: initializeServices(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) return Container();
+        return Portfolio();
+      }
+    ),
   ));
 }
 

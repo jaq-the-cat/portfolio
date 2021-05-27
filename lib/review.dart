@@ -73,12 +73,18 @@ class _ReviewState extends State<Review> {
                 icon: Icon(Icons.check),
                 label: Text("Add review"),
                 onPressed: () async {
-                  if (await doCaptcha() && _formKey.currentState.validate()) {
+                  if (_formKey.currentState.validate() && await doCaptcha()) {
                     addPost({
                       'email': email.text,
                       'name': name.text,
                       'message': message.text,
                     });
+                    Navigator.of(context).pop();
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text("Something went wrong, please try again.", style: TextStyle(color: Colors.white)),
+                      backgroundColor: Colors.red,
+                    ));
                   }
               }),
             ]
