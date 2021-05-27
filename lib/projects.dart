@@ -14,7 +14,7 @@ class RepoButton extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(horizontal:  20, vertical: 10),
         decoration: BoxDecoration(
-          border:  Border.all(color: Colors.black45),
+          border:  Border.all(color: Colors.white24),
           borderRadius: BorderRadius.all(Radius.circular(5)),
         ),
       child: InkWell(
@@ -27,7 +27,7 @@ class RepoButton extends StatelessWidget {
             children: [
               Text(this.title, style: Theme.of(context).textTheme.subtitle1),
               SizedBox(height: 8),
-              Text(this.desc, style: Theme.of(context).textTheme.bodyText1, textAlign: TextAlign.center,),
+              Text(this.desc, style: Theme.of(context).textTheme.bodyText1, textAlign: TextAlign.center),
             ]
           )
         )
