@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import 'util.dart';
+import 'database.dart';
 
 class Review extends StatefulWidget {
 
@@ -73,7 +74,11 @@ class _ReviewState extends State<Review> {
                 label: Text("Add review"),
                 onPressed: () async {
                   if (await doCaptcha() && _formKey.currentState.validate()) {
-                    print("${email.text}\n${name.text}\n${message.text}");
+                    addPost({
+                      'email': email.text,
+                      'name': name.text,
+                      'message': message.text,
+                    });
                   }
               }),
             ]

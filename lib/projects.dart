@@ -25,9 +25,9 @@ class RepoButton extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(this.title, style: Theme.of(context).textTheme.subtitle1),
+              Text(this.title, style: TextStyle(fontSize: 24, color: Colors.white)),
               SizedBox(height: 8),
-              Text(this.desc, style: Theme.of(context).textTheme.bodyText1, textAlign: TextAlign.center),
+              Text(this.desc, style: TextStyle(fontSize: 16, color: Colors.white70), textAlign: TextAlign.center),
             ]
           )
         )

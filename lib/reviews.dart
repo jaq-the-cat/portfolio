@@ -35,9 +35,9 @@ class ReviewsState extends State<Reviews> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(snapshot.data[i]['email'], style: Theme.of(context).textTheme.headline5),
-                Text(snapshot.data[i]['name'], style: Theme.of(context).textTheme.headline4),
-                Text(snapshot.data[i]['message'], style: Theme.of(context).textTheme.bodyText1),
+                Text(snapshot.data[i]['email'], style: TextStyle(fontSize: 16, color: Colors.white60)),
+                Text(snapshot.data[i]['name'], style: TextStyle(fontSize: 22, color:  Colors.white)),
+                Text(snapshot.data[i]['message'], style: TextStyle(fontSize: 18, color: Colors.white)),
               ],
             ),
           )
