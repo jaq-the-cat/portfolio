@@ -3,9 +3,12 @@ import 'projects.dart';
 import 'util.dart';
 import 'review.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart' as dotenv;
+import 'package:firebase_core/firebase_core.dart';
+import 'database.dart';
 
 void main() async {
   await dotenv.load();
+  Firebase.initializeApp();
   runApp(MaterialApp(
     title: "Jaquie's Portfolio",
     theme: ThemeData(
@@ -25,7 +28,7 @@ class Portfolio extends StatelessWidget {
 
     final List<List<Widget>> tabs = [
       [tab("About me"), Container()],
-      [tab("Reviews"), Container()],
+      [tab("Reviews"), Reviews(getPosts())],
       [tab("Projects"), Projects(getRepositories('jaq-the-cat'))],
     ];
 
