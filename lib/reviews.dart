@@ -26,21 +26,29 @@ class ReviewsState extends State<Reviews> {
         );
         return ListView.builder(
           itemCount: snapshot.data.length,
-          itemBuilder: (context, i) => Container(
-            margin: EdgeInsets.symmetric(horizontal:  20, vertical:  40),
-            decoration: BoxDecoration(
-              border:  Border.all(color: Colors.black45),
-              borderRadius:  BorderRadius.all(Radius.circular(5)),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(snapshot.data[i]['email'], style: TextStyle(fontSize: 16, color: Colors.white60)),
-                Text(snapshot.data[i]['name'], style: TextStyle(fontSize: 22, color:  Colors.white)),
-                Text(snapshot.data[i]['message'], style: TextStyle(fontSize: 18, color: Colors.white)),
-              ],
-            ),
-          )
+          itemBuilder: (context, i) {
+            final bool shouldDisplay = !snapshot.data[i]['contact'].trim().isEmpty;
+            return Container(
+              margin: EdgeInsets.symmetric(horizontal:  20, vertical:  20),
+              decoration: BoxDecoration(
+                border:  Border.all(color: Colors.white24),
+                borderRadius:  BorderRadius.all(Radius.circular(5)),
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    shouldDisplay ? Text(snapshot.data[i]['contact'], style: TextStyle(fontSize: 15, color: Colors.white38)) : Container(),
+                    shouldDisplay ? SizedBox(height: 2) : Container(),
+                    Text(snapshot.data[i]['name'], style: TextStyle(fontSize: 24, color:  Colors.white)),
+                    SizedBox(height: 15),
+                    Text(snapshot.data[i]['message'], style: TextStyle(fontSize: 20, color: Colors.white), textAlign: TextAlign.justify),
+                  ],
+                ),
+              ),
+            );
+          }
         );
       }
     );

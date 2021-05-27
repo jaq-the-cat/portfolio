@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:email_validator/email_validator.dart';
-import 'util.dart';
 import 'database.dart';
 
 class Review extends StatefulWidget {
@@ -11,7 +9,7 @@ class Review extends StatefulWidget {
 
 class _ReviewState extends State<Review> {
   final _formKey = GlobalKey<FormState>();
-  final email = TextEditingController();
+  final contact = TextEditingController();
   final name = TextEditingController();
   final message = TextEditingController();
 
@@ -27,12 +25,10 @@ class _ReviewState extends State<Review> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               TextFormField(
-                controller: email,
+                controller: contact,
                 decoration: InputDecoration(
-                  labelText:  "E-mail",
+                  labelText:  "Contact",
                 ),
-                validator: (text) =>
-                  (text != null && EmailValidator.validate(text)) ? null : "Please enter a valid email",
               ),
               SizedBox(height: 15),
               TextFormField(
@@ -41,7 +37,7 @@ class _ReviewState extends State<Review> {
                   labelText:  "Name",
                 ),
                 validator: (text) =>
-                  (text != null && text.trim().isNotEmpty) ? null : "Please enter a valid name",
+                  (text != null && text.trim().isNotEmpty) ? null : "Please enter your name",
               ),
               SizedBox(height: 15),
               Column(
@@ -73,9 +69,9 @@ class _ReviewState extends State<Review> {
                 icon: Icon(Icons.check),
                 label: Text("Add review"),
                 onPressed: () async {
-                  if (_formKey.currentState.validate() && await doCaptcha()) {
+                  if (_formKey.currentState.validate() /* && await doCaptcha() */) {
                     addPost({
-                      'email': email.text,
+                      'contact': contact.text,
                       'name': name.text,
                       'message': message.text,
                     });
