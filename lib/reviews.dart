@@ -31,7 +31,15 @@ class ReviewsState extends State<Reviews> {
             decoration: BoxDecoration(
               border:  Border.all(color: Colors.black45),
               borderRadius:  BorderRadius.all(Radius.circular(5)),
-            )
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(snapshot.data[i]['email'], style: Theme.of(context).textTheme.headline5),
+                Text(snapshot.data[i]['name'], style: Theme.of(context).textTheme.headline4),
+                Text(snapshot.data[i]['message'], style: Theme.of(context).textTheme.bodyText1),
+              ],
+            ),
           )
         );
       }

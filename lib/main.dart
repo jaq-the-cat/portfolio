@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart' as dotenv;
+import 'package:firebase_core/firebase_core.dart';
+
 import 'projects.dart';
 import 'util.dart';
 import 'review.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart' as dotenv;
-import 'package:firebase_core/firebase_core.dart';
+import 'reviews.dart';
 import 'database.dart';
 
 void main() async {
